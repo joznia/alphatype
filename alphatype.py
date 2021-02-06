@@ -21,11 +21,12 @@ exit_on_finish = False
 t = tt.Pen()
 
 class Funcs:
+    # turn a string into a list of characters
     def str2list(self, convstring: str):
         list1=[]
         list1[:0]=convstring
         return list1
-    # apply the configuration
+    # apply (some of) the configuration
     def applyconfig(self):
         t.speed(pen_speed)
         t.width(pen_width)

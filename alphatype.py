@@ -5,8 +5,8 @@ import turtle as tt
 import time
 
 # turtle config
-screen_size_x = 1600
-screen_size_y = 900
+screen_size_x = 1000
+screen_size_y = 600
 pen_speed = 200
 pen_width = 1
 pen_color = 'black'
@@ -42,7 +42,7 @@ class Funcs:
         for charobj in wordsaslist:
             if charobj != ' ':
                 t.down()
-                try: 
+                try:
                     f.applyconfig()
                     eval('l.'+charobj+'()')
                     c.letterspace()
@@ -523,7 +523,3 @@ if recursive_prompt == True:
         c.promptspace()
     else:
         exit
-
-
-
-        

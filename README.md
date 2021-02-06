@@ -5,11 +5,9 @@ It takes a string and draws it using Turtle.
 
 Only alpha characters are supported, and in uppercase only.
 
-To use it, edit `alphatype.py` and change the `draw_words` value to whatever string you desire, as long as it fits the criteria above.
+To use it, simply run it, and enter a string to be drawn onto the canvas. It must fit the criteria above. and as long as the `turtle` module is available, your string will be drawn out onto the canvas.
 
-Have a look at the other options in there as well. 
-
-Then, simply run it, and as long as the `turtle` module is available, your string will be drawn out onto the canvas.
+To customize the turtle, edit `alphatype.py` and have a look at the configuration values (e.g. `pen_speed` or `pen_color`).
 
 Each character is drawn using commands I made entirely manually.
 

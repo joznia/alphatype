@@ -4,8 +4,8 @@ import sys
 import turtle as tt
 import time
 
-# what word(s) to draw (all lowercase):
-draw_words = 'turtle'
+# what word(s) to draw (all lowercase, alpha characters only):
+draw_words = 'fard'
 
 # turtle config
 screen_size_x = 1600
@@ -128,15 +128,12 @@ class Char(Letter):
     def d(self):
         c.startnew()
         c.pointright()
-        diagangle = 62
-        t.left(diagangle)
-        t.forward(71)
+        t.left(45)
+        t.forward(80)
         c.pointup()
-        t.left(diagangle / 2)
-        t.forward(64)
-        c.pointdown()
-        t.forward(3)
-        c.ret(3)
+        c.pointleft()
+        t.right(46)
+        t.forward(81)
     def e(self):
         c.startnew()
         for _ in range(3):

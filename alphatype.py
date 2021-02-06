@@ -5,14 +5,14 @@ import turtle as tt
 import time
 
 # what word(s) to draw (all lowercase, alpha characters only):
-draw_words = 'fard'
+draw_words = 'alphatype'
 
 # turtle config
 screen_size_x = 1600
 screen_size_y = 900
 pen_speed = 200
 pen_width = 3
-pen_color = 'green'
+pen_color = 'blue'
 pen_show_arrow = False
 letter_spacing = True # with this disabled, letters will stack on top of each other
 exit_on_finish = False

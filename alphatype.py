@@ -4,9 +4,6 @@ import sys
 import turtle as tt
 import time
 
-# get input for words
-draw_words = input('what word(s) to draw (all lowercase, alpha characters only):\n')
-
 # turtle config
 screen_size_x = 1600
 screen_size_y = 900
@@ -14,8 +11,13 @@ pen_speed = 200
 pen_width = 1
 pen_color = 'black'
 pen_show_arrow = False
-letter_spacing = True # with this disabled, letters will stack on top of each other
-exit_on_finish = False
+letter_spacing = True # if disabled, letters will stack on top of each other
+recursive_prompt = True # if disabled, don't keep asking for new words when finished with the initial one
+prompt_spacing = True # if disabled, every successive prompt for words won't have a space in between, regardless of the value of letter_spacing
+ask_msg = 'what word(s) to draw (all lowercase, alpha characters only):\n'
+
+# get input for words
+draw_words = input(ask_msg)
 
 # define functions and put them in classes
 t = tt.Pen()
@@ -35,6 +37,25 @@ class Funcs:
             t.showturtle()
         else:
             t.hideturtle()
+    def drawletters(self):
+        wordsaslist = f.str2list(draw_words)
+        for charobj in wordsaslist:
+            if charobj != ' ':
+                t.down()
+                try: 
+                    f.applyconfig()
+                    eval('l.'+charobj+'()')
+                    c.letterspace()
+                except:
+                    # draw an error message if there is an invalid character
+                    t.color('red')
+                    t.speed(100 ** 100)
+                    errwords = f.str2list("error")
+                    for errobj in errwords:
+                        eval('l.'+errobj+'()')
+                        c.new()
+            else:
+                c.letterspace()
 f = Funcs()
 
 class Letter(Funcs):
@@ -72,6 +93,11 @@ class Control(Letter):
         t.setheading(0)
     def letterspace(self):
         if letter_spacing == True:
+            c.new()
+        else:
+            pass
+    def promptspace(self):
+        if prompt_spacing == True:
             c.new()
         else:
             pass
@@ -488,33 +514,16 @@ screen_size_x_goto = (screen_size_x / 10) + (screen_size_x / 2) + (screen_size_x
 t.goto(screen_size_x_goto, 0)
 
 # print the characters
-wordsaslist = f.str2list(draw_words)
-for charobj in wordsaslist:
-    if charobj != ' ':
-        t.down()
-        try: 
-            f.applyconfig()
-            eval('l.'+charobj+'()')
-            c.letterspace()
-        except:
-            # draw an error message if there is an invalid character
-            t.color('red')
-            t.speed(100 ** 100)
-            errwords = f.str2list("error")
-            for errobj in errwords:
-                eval('l.'+errobj+'()')
-                c.new()
-    else:
-        c.letterspace()
-
-if exit_on_finish == True:
-    pass
-else:
-    # super lazy and stupid way of keeping the turtle window open
+f.drawletters()
+c.promptspace()
+if recursive_prompt == True:
     while True:
-        try:
-            t.left(0)
-        except:
-            exit
+        draw_words = input(ask_msg)
+        f.drawletters()
+        c.promptspace()
+    else:
+        exit
+
+
 
         

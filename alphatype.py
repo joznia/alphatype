@@ -160,6 +160,9 @@ class Char(Letter):
         c.pointleft()
         t.right(46)
         t.forward(81)
+        c.pointleft()
+        t.up()
+        t.forward(20)
     def e(self):
         c.startnew()
         for _ in range(3):
@@ -522,4 +525,4 @@ if recursive_prompt == True:
         f.drawletters()
         c.promptspace()
     else:
-        exit
+        exit()

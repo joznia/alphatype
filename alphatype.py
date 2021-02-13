@@ -124,13 +124,13 @@ class Control(Letter):
         t.setheading(0)
 
     def letterspace(self):
-        if letter_spacing == True:
+        if letter_spacing is True:
             c.new()
         else:
             pass
 
     def promptspace(self):
-        if prompt_spacing == True:
+        if prompt_spacing is True:
             c.new()
         else:
             pass

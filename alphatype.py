@@ -1,5 +1,5 @@
 # python program to draw letters using a turtle
-# written by joznia, 06-feb-2021
+# written by joznia
 import sys
 import turtle as tt
 import time
@@ -69,6 +69,7 @@ class Funcs:
             else:
                 c.letterspace()
     def specchar(self, charto: str):
+        t.down()
         f.applyconfig()
         eval('l.'+charto+'()')
         c.letterspace()

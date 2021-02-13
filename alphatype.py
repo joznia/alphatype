@@ -1,8 +1,6 @@
 # python program to draw letters using a turtle
 # written by joznia
-import sys
 import turtle as tt
-import time
 
 # turtle config
 screen_size_x = 1000
@@ -11,9 +9,9 @@ pen_speed = 200
 pen_width = 1
 pen_color = 'black'
 pen_show_arrow = False
-letter_spacing = True # if disabled, letters will stack on top of each other
-recursive_prompt = True # if disabled, don't keep asking for new words when finished with the initial one
-prompt_spacing = True # if disabled, every successive prompt for words won't have a space in between, regardless of the value of letter_spacing
+letter_spacing = True     # if disabled, letters will stack on top of each other
+recursive_prompt = True   # if disabled, don't keep asking for new words when finished with the initial one
+prompt_spacing = True     # if disabled, every successive prompt for words won't have a space in between, regardless of the value of letter_spacing
 ask_msg = 'what word(s) to draw (all lowercase):\n'
 
 # get input for words
@@ -22,21 +20,24 @@ draw_words = input(ask_msg)
 # define functions and put them in classes
 t = tt.Pen()
 
+
 class Funcs:
     # turn a string into a list of characters
     def str2list(self, convstring: str):
-        list1=[]
-        list1[:0]=convstring
+        list1 = []
+        list1[:0] = convstring
         return list1
+
     # apply (some of) the configuration
     def applyconfig(self):
         t.speed(pen_speed)
         t.width(pen_width)
         t.color(pen_color)
-        if pen_show_arrow == True:
+        if pen_show_arrow is True:
             t.showturtle()
         else:
             t.hideturtle()
+
     def drawletters(self):
         wordsaslist = f.str2list(draw_words)
         for charobj in wordsaslist:
@@ -68,19 +69,25 @@ class Funcs:
                         c.new()
             else:
                 c.letterspace()
+
     def specchar(self, charto: str):
         t.down()
         f.applyconfig()
         eval('l.'+charto+'()')
         c.letterspace()
+
+
 f = Funcs()
+
 
 class Letter(Funcs):
     pass
 
+
 class Control(Letter):
     def reset(self):
         t.setheading(0)
+
     def new(self):
         t.up()
         c.pointup()
@@ -88,37 +95,49 @@ class Control(Letter):
         t.forward(90)
         c.pointdown()
         t.down()
+
     def ret(self, dist: float):
         t.up()
         t.backward(dist)
         t.down()
+
     def returndown(self, dist: float):
         t.down()
         t.backward(dist)
         t.down()
+
     def startnew(self):
         c.pointdown()
         t.down()
         t.forward(115)
+
     def pointdown(self):
         t.setheading(270)
+
     def pointup(self):
         t.setheading(90)
+
     def pointleft(self):
         t.setheading(180)
+
     def pointright(self):
         t.setheading(0)
+
     def letterspace(self):
         if letter_spacing == True:
             c.new()
         else:
             pass
+
     def promptspace(self):
         if prompt_spacing == True:
             c.new()
         else:
             pass
+
+
 c = Control()
+
 
 # define how to draw characters
 class Char(Letter):
@@ -138,6 +157,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def b(self):
         c.startnew()
         c.pointright()
@@ -155,6 +175,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def c(self):
         c.startnew()
         c.pointright()
@@ -168,6 +189,7 @@ class Char(Letter):
         t.forward(70)
         c.ret(70)
         c.pointdown()
+
     def d(self):
         c.startnew()
         c.pointright()
@@ -180,6 +202,7 @@ class Char(Letter):
         c.pointleft()
         t.up()
         t.forward(20)
+
     def e(self):
         c.startnew()
         for _ in range(3):
@@ -193,6 +216,7 @@ class Char(Letter):
         t.up()
         c.pointdown()
         t.forward(57.5)
+
     def f(self):
         t.up()
         c.pointright()
@@ -214,6 +238,7 @@ class Char(Letter):
         c.pointright()
         t.forward(70)
         c.pointdown()
+
     def g(self):
         c.startnew()
         c.pointright()
@@ -230,6 +255,7 @@ class Char(Letter):
         t.down()
         t.forward(70)
         c.pointdown()
+
     def h(self):
         c.startnew()
         t.up()
@@ -248,6 +274,7 @@ class Char(Letter):
         c.pointup()
         t.forward(115)
         c.pointdown()
+
     def i(self):
         c.pointright()
         t.up()
@@ -270,6 +297,7 @@ class Char(Letter):
         t.down()
         t.forward(70)
         c.pointdown()
+
     def j(self):
         c.pointright()
         t.up()
@@ -291,6 +319,7 @@ class Char(Letter):
         t.down()
         t.forward(70)
         c.pointdown()
+
     def k(self):
         c.startnew()
         c.ret(57.5)
@@ -305,6 +334,7 @@ class Char(Letter):
         c.pointup()
         t.forward(57.5)
         c.pointdown()
+
     def l(self):
         c.startnew()
         c.pointright()
@@ -315,6 +345,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def m(self):
         c.startnew()
         c.ret(115)
@@ -331,6 +362,7 @@ class Char(Letter):
         c.pointup()
         t.forward(115)
         c.pointdown()
+
     def n(self):
         c.startnew()
         c.ret(115)
@@ -344,6 +376,7 @@ class Char(Letter):
         t.forward(41)
         c.pointdown()
         t.forward(1)
+
     def o(self):
         c.startnew()
         c.pointright()
@@ -353,6 +386,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def p(self):
         c.startnew()
         c.ret(115)
@@ -365,6 +399,7 @@ class Char(Letter):
         c.pointup()
         t.forward(35)
         c.pointdown()
+
     def q(self):
         c.startnew()
         c.pointright()
@@ -389,6 +424,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def r(self):
         c.startnew()
         c.ret(115)
@@ -406,6 +442,7 @@ class Char(Letter):
         t.up()
         t.forward(45)
         c.pointdown()
+
     def s(self):
         c.pointdown()
         t.up()
@@ -423,6 +460,7 @@ class Char(Letter):
         t.forward(70)
         c.ret(70)
         c.pointdown()
+
     def t(self):
         c.pointright()
         t.up()
@@ -437,6 +475,7 @@ class Char(Letter):
         t.down()
         t.forward(70)
         c.pointdown()
+
     def u(self):
         c.startnew()
         c.pointright()
@@ -447,6 +486,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def v(self):
         c.pointdown()
         t.left(25)
@@ -457,6 +497,7 @@ class Char(Letter):
         t.up()
         t.forward(75)
         c.pointdown()
+
     def w(self):
         for _ in range(2):
             c.startnew()
@@ -468,6 +509,7 @@ class Char(Letter):
         t.up()
         t.forward(70)
         c.pointdown()
+
     def x(self):
         t.up()
         offset = 50
@@ -491,6 +533,7 @@ class Char(Letter):
         c.pointup()
         t.forward(fwd * 1.4)
         c.pointdown()
+
     def y(self):
         c.pointdown()
         t.forward(57.5)
@@ -507,6 +550,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(70)
         c.pointdown()
+
     def z(self):
         c.pointright()
         fwdam = 90
@@ -522,6 +566,7 @@ class Char(Letter):
         c.pointleft()
         t.forward(fwdam - 15)
         c.pointdown()
+
     def excl(self):
         c.pointdown()
         t.forward(100)
@@ -533,6 +578,7 @@ class Char(Letter):
         c.pointup()
         t.forward(115)
         c.pointdown()
+
     def ques(self):
         c.pointright()
         t.forward(70)
@@ -550,6 +596,7 @@ class Char(Letter):
         c.pointup()
         t.forward(115)
         c.pointright()
+
     def peri(self):
         t.up()
         c.pointdown()
@@ -560,11 +607,13 @@ class Char(Letter):
         c.pointup()
         t.forward(115)
         c.pointdown()
+
     def squo(self):
         c.pointdown()
         t.forward(50)
         c.ret(50)
         c.pointdown()
+
     def dquo(self):
         c.pointdown()
         t.forward(50)
@@ -577,6 +626,7 @@ class Char(Letter):
         t.forward(50)
         c.ret(50)
         c.pointright()
+
     def equa(self):
         c.pointdown()
         t.up()
@@ -595,6 +645,8 @@ class Char(Letter):
         t.up()
         c.pointup()
         t.forward(57.5 + 20)
+
+
 l = Char()
 
 # apply screen size
@@ -609,7 +661,7 @@ t.goto(screen_size_x_goto, 0)
 # print the characters
 f.drawletters()
 c.promptspace()
-if recursive_prompt == True:
+if recursive_prompt is True:
     while True:
         draw_words = input(ask_msg)
         f.drawletters()

@@ -5,7 +5,7 @@ It takes a string and draws it using Turtle.
 
 Only alpha characters are supported, in lowercase only.
 
-The following symbols are also supported.
+The following symbols are also supported:
 
 - .
 - '

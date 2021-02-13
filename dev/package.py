@@ -17,3 +17,6 @@ try:
     os.rename("alphatype.cpython-39.pyc", "../dist/alphatype_%s.pyc" % tagver)
 except:
     os.replace("alphatype.cpython-39.pyc", "../dist/alphatype_%s.pyc" % tagver)
+
+print("pushing tags...")
+os.system("git push --tags")

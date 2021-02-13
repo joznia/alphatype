@@ -3,7 +3,16 @@ This is a Python program I made for a fun project.
 
 It takes a string and draws it using Turtle.
 
-Only alpha characters are supported, and in uppercase only.
+Only alpha characters are supported, in lowercase only.
+
+The following symbols are also supported.
+
+- .
+- '
+- "
+- ?
+- !
+- =
 
 To use it, simply run it, and enter a string to be drawn onto the canvas. It must fit the criteria above. As long as the `turtle` module is available, your string will be drawn out onto the canvas.
 

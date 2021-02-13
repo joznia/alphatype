@@ -14,7 +14,7 @@ pen_show_arrow = False
 letter_spacing = True # if disabled, letters will stack on top of each other
 recursive_prompt = True # if disabled, don't keep asking for new words when finished with the initial one
 prompt_spacing = True # if disabled, every successive prompt for words won't have a space in between, regardless of the value of letter_spacing
-ask_msg = 'what word(s) to draw (all lowercase, alpha characters only):\n'
+ask_msg = 'what word(s) to draw (all lowercase):\n'
 
 # get input for words
 draw_words = input(ask_msg)
@@ -40,7 +40,19 @@ class Funcs:
     def drawletters(self):
         wordsaslist = f.str2list(draw_words)
         for charobj in wordsaslist:
-            if charobj != ' ':
+            if charobj == '!':
+                f.specchar("excl")
+            elif charobj == '?':
+                f.specchar("ques")
+            elif charobj == '.':
+                f.specchar('peri')
+            elif charobj == '\'':
+                f.specchar('squo')
+            elif charobj == '\"':
+                f.specchar('dquo')
+            elif charobj == '=':
+                f.specchar('equa')
+            elif charobj != ' ':
                 t.down()
                 try:
                     f.applyconfig()
@@ -56,6 +68,10 @@ class Funcs:
                         c.new()
             else:
                 c.letterspace()
+    def specchar(self, charto: str):
+        f.applyconfig()
+        eval('l.'+charto+'()')
+        c.letterspace()
 f = Funcs()
 
 class Letter(Funcs):
@@ -505,6 +521,79 @@ class Char(Letter):
         c.pointleft()
         t.forward(fwdam - 15)
         c.pointdown()
+    def excl(self):
+        c.pointdown()
+        t.forward(100)
+        t.up()
+        t.forward(10)
+        t.down()
+        t.forward(5)
+        t.up()
+        c.pointup()
+        t.forward(115)
+        c.pointdown()
+    def ques(self):
+        c.pointright()
+        t.forward(70)
+        c.pointdown()
+        t.forward(50)
+        c.pointleft()
+        t.forward(70)
+        c.pointdown()
+        t.forward(55)
+        t.up()
+        t.forward(5)
+        t.down()
+        t.forward(5)
+        t.up()
+        c.pointup()
+        t.forward(115)
+        c.pointright()
+    def peri(self):
+        t.up()
+        c.pointdown()
+        t.forward(110)
+        t.down()
+        t.forward(5)
+        t.up()
+        c.pointup()
+        t.forward(115)
+        c.pointdown()
+    def squo(self):
+        c.pointdown()
+        t.forward(50)
+        c.ret(50)
+        c.pointdown()
+    def dquo(self):
+        c.pointdown()
+        t.forward(50)
+        c.ret(50)
+        c.pointright()
+        t.up()
+        t.forward(15)
+        t.down()
+        c.pointdown()
+        t.forward(50)
+        c.ret(50)
+        c.pointright()
+    def equa(self):
+        c.pointdown()
+        t.up()
+        t.forward(57.5)
+        t.down()
+        c.pointright()
+        t.forward(70)
+        c.ret(70)
+        t.up()
+        c.pointdown()
+        t.forward(20)
+        t.down()
+        c.pointright()
+        t.forward(70)
+        c.ret(70)
+        t.up()
+        c.pointup()
+        t.forward(57.5 + 20)
 l = Char()
 
 # apply screen size

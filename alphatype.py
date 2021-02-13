@@ -53,19 +53,21 @@ class Funcs:
                 f.specchar('dquo')
             elif charobj == '=':
                 f.specchar('equa')
+            elif charobj == 'l':
+                f.specchar('letterl')
             elif charobj != ' ':
                 t.down()
                 try:
                     f.applyconfig()
-                    eval('l.'+charobj+'()')
+                    eval('ch.'+charobj+'()')
                     c.letterspace()
-                except:
+                except Exception:
                     # draw an error message if there is an invalid character
                     t.color('red')
                     t.speed(100 ** 100)
                     errwords = f.str2list("error")
                     for errobj in errwords:
-                        eval('l.'+errobj+'()')
+                        eval('ch.'+errobj+'()')
                         c.new()
             else:
                 c.letterspace()
@@ -73,7 +75,7 @@ class Funcs:
     def specchar(self, charto: str):
         t.down()
         f.applyconfig()
-        eval('l.'+charto+'()')
+        eval('ch.'+charto+'()')
         c.letterspace()
 
 
@@ -335,7 +337,7 @@ class Char(Letter):
         t.forward(57.5)
         c.pointdown()
 
-    def l(self):
+    def letterl(self):
         c.startnew()
         c.pointright()
         t.forward(70)
@@ -647,7 +649,7 @@ class Char(Letter):
         t.forward(57.5 + 20)
 
 
-l = Char()
+ch = Char()
 
 # apply screen size
 screen = tt.Screen()
@@ -655,7 +657,8 @@ screen.setup(screen_size_x, screen_size_y)
 
 # move turtle to the left side
 t.up()
-screen_size_x_goto = (screen_size_x / 10) + (screen_size_x / 2) + (screen_size_x - (2 * screen_size_x))
+ssx = screen_size_x
+screen_size_x_goto = (ssx / 10) + (ssx / 2) + (ssx - (2 * ssx))
 t.goto(screen_size_x_goto, 0)
 
 # print the characters
